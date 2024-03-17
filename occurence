@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Occurrence Counter</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<input type="text" id="sentenceInput" placeholder="Enter a sentence">
+<input type="text" id="wordInput" placeholder="Enter a word">
+<button id="countButton">Count Occurrences</button>
+
+<div id="result"></div>
+
+<script>
+$(document).ready(function() {
+  $('#countButton').on('click', function() {
+    var sentence = $('#sentenceInput').val(); // Get the sentence input value
+    var word = $('#wordInput').val(); // Get the word input value
+    var regex = new RegExp('\\b' + word + '\\b', 'gi'); // Create regex to match whole word and case insensitive
+
+    var occurrences = (sentence.match(regex) || []).length; // Count occurrences of the word
+
+    $('#result').text('The word "' + word + '" occurs ' + occurrences + ' time(s) in the sentence.');
+  });
+});
+</script>
+
+</body>
+</html>
