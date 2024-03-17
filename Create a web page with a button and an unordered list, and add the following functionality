@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic List</title>
+<style>
+  /* CSS for list item background color */
+  .random-color {
+    background-color: #ccc; /* Default color */
+    padding: 5px;
+    margin: 5px 0;
+  }
+</style>
+</head>
+<body>
+
+<button id="addBtn">Add Random Number</button>
+<ul id="numberList">
+  <!-- List items will be added dynamically here -->
+</ul>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Function to generate random color
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Function to add a new list item with random number and color
+  $('#addBtn').on('click', function() {
+    var randomNumber = Math.floor(Math.random() * 10) + 1; // Generate random number between 1 and 10
+    var randomColor = getRandomColor(); // Generate random color
+
+    // Create new list item with random number and color
+    var listItem = $('<li>').text(randomNumber).addClass('random-color').css('background-color', randomColor);
+
+    // Append new list item to the unordered list
+    $('#numberList').append(listItem);
+  });
+});
+</script>
+
+</body>
+</html>
